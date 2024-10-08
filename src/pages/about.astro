@@ -1,9 +1,15 @@
 ---
+import Link from '../components/Link.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title='About'>
-  <section>
-    
+  <section class="container mx-auto about" aria-label="About">
+    <img src="/images/headshot.jpg" alt="My headshot" height="200" width="330">
+    <div class="content">
+      <h2>My Blog</h2>
+      <p>Proident officia consequat reprehenderit aliquip fugiat nisi occaecat aliquip do adipisicing consectetur minim eiusmod sint. Reprehenderit reprehenderit deserunt elit laboris aute nulla dolore sit eiusmod veniam non. Lorem minim enim exercitation esse enim ut sit elit nostrud aliqua tempor magna. Fugiat mollit dolor quis dolore.</p>
+      <Link text="Contact Me" href="mailto:werras04@gmail.com"/>
+    </div>
   </section>
 </Layout>

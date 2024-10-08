@@ -23,12 +23,13 @@ const {
   class:list={[ "link", classes ]}
   {...rest}>
   
-  <!-- Renderiza el ícono a la izquierda si existe y si el lado es 'left' -->
+  <slot name="left"/>
+
   { icon && icon.side === "left" && ( <i class={icon.nameIcon}></i>) }
 
-  <!-- Texto del enlace -->
   <span>{text}</span>
 
-  <!-- Renderiza el ícono a la derecha si existe y si el lado es 'right' -->
+  <slot name="right"/>
+
   { icon && icon.side === "right" && ( <i class={icon.nameIcon}></i>) }
 </a>

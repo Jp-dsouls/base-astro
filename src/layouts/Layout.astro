@@ -2,6 +2,7 @@
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import Head from './Head.astro';
 interface Props {
 	title?: string;
 	description?: string
@@ -12,20 +13,12 @@ const { title="Default Title", description="Default description" } = Astro.props
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description}>
-		<title>{title}</title>
-		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-		<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-	</head>
+	<Head/>
 	<body>
 		<Nav/>
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<ViewTransitions />
 		<Footer/>
 	</body>
