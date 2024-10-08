@@ -1,26 +1,23 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+
+const allPosts = await Astro.glob("./*.md");
 ---
 
 <Layout title="Welcome to Astro.">
-  <ul>
-    <li>
-      <a href="./post-1">Post 1</a>
-    </li>
-    <li>
-      <a href="./post-2">Post 2</a>
-    </li>
-    <li>
-      <a href="./post-3">Post 3</a>
-    </li>
-    <li>
-      <a href="./post-4">Post 4</a>
-    </li>
-    <li>
-      <a href="./post-5">Post 5</a>
-    </li>
-    <li>
-      <a href="./post-6">Post 6</a>
-    </li>
-  </ul>
+  <section class="container mx-auto" arial-label="New Blog Posts">
+    <h2 class="h2">New Blog Posts</h2>
+    <div class="post-container">
+      {
+        allPosts.map((post) => (
+          <PostCard
+            frontmatter={post.frontmatter}
+            url="{post.url}"
+            tagType="h3"
+          />
+        ))
+      }
+    </div>
+  </section>
 </Layout>
