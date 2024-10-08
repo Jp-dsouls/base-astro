@@ -1,0 +1,34 @@
+---
+interface Props {
+  text: string;                             
+  href: string;       
+  icon?: {                                  
+    nameIcon: string;                       
+    side: "left" | "right";                 
+  };
+  classes?: string;                         
+}
+
+const {
+  text,
+  href,
+  icon,
+  classes,
+  ...rest
+} = Astro.props as Props;
+---
+
+<a
+  href={href}
+  class:list={[ "link", classes ]}
+  {...rest}>
+  
+  <!-- Renderiza el ícono a la izquierda si existe y si el lado es 'left' -->
+  { icon && icon.side === "left" && ( <i class={icon.nameIcon}></i>) }
+
+  <!-- Texto del enlace -->
+  <span>{text}</span>
+
+  <!-- Renderiza el ícono a la derecha si existe y si el lado es 'right' -->
+  { icon && icon.side === "right" && ( <i class={icon.nameIcon}></i>) }
+</a>

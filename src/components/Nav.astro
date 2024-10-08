@@ -1,0 +1,24 @@
+---
+import navData from "../data/navData"
+import Link from "./Link.astro"
+---
+
+<nav aria-label="Primary" class="container mx-auto py-4">
+  <div class="navbar flex justify-between">
+    <a href="/" aria-label="Go home" class="logomark">
+      <i class='bx bxs-store'></i>
+    </a>
+
+    <ul class="flex gap-3">
+      {
+        navData.map((item) => (
+          <Link
+            text={item.name}            
+            href={item.path}            
+            icon={{ nameIcon: item.icon, side: "left" }}             
+          />
+        ))
+      }
+    </ul>
+  </div>
+</nav>
