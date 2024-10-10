@@ -1,8 +1,16 @@
 export function slugify(text) {
-  return text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '')
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
-export function formateDate(date) {
-  return new Date(date).toLocaleDateString('es-PE', {
+
+export function formatDate(date) {
+  return new Date(date).toLocaleDateString('en-US', {
     timeZone: "UTC",
   })
 }
@@ -11,25 +19,34 @@ export function formatBlogPosts(posts, {
   filterOutDrafts = true,
   filterOutFuturePosts = true,
   sortByDate = true,
-  limit = undefined
+  limit = undefined,
 } = {}) {
+
   const filteredPosts = posts.reduce((acc, post) => {
     const { date, draft } = post.frontmatter;
+    // filterOutDrafts if true
     if (filterOutDrafts && draft) return acc;
+
+    // filterOutFuturePosts if true
     if (filterOutFuturePosts && new Date(date) > new Date()) return acc;
+
+    // add post to acc
     acc.push(post)
-    return acc
+
+    return acc;
   }, [])
-  //Sort by Date or randomize
+
+  // sortByDate or randomize
   if (sortByDate) {
-    filteredPosts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
-    )
+    filteredPosts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
   } else {
     filteredPosts.sort(() => Math.random() - 0.5)
   }
-  //Limit if number is passed
+
+  // limit if number is passed
   if (typeof limit === "number") {
     return filteredPosts.slice(0, limit);
   }
-  return filteredPosts
+  return filteredPosts;
+
 }

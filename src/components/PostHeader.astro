@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import {slugify, formateDate} from "../js/utils"
+import {slugify, formatDate} from "../js/utils"
 
 const {date, category, title, author, image} = Astro.props;
 
@@ -13,7 +13,7 @@ const {date, category, title, author, image} = Astro.props;
     </small>
     <h2>{title}</h2>
     <p>by <a href={`/author/${slugify(author)}`}>{author}</a>
-    - {formateDate(date)}</p>
+    - {formatDate(date)}</p>
   </div>
   <Image src={image.src} alt={image.alt} width="1200" height="600" format='avif' quality="max" class="w-full h-96 aspect-video object-fill lg:md:sm:h-[500px]">
 </header>
